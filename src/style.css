@@ -1,0 +1,75 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  --header-bg-color: #493628;
+  --header-text-color: #e4e0e1;
+  --aside-bg-color: #d6c0b3;
+  --aside-text-color: #493628;
+  --main-bg-color: #e4e0e1;
+  --main-text-color: #493628;
+  --button-bg-color: #ab886d;
+  --button-text-color: #e4e0e1;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+header {
+  background-color: var(--header-bg-color);
+  color: var(--header-text-color);
+  padding: 10px;
+}
+
+aside {
+  background-color: var(--aside-bg-color);
+  color: var(--aside-text-color);
+  padding: 10px;
+}
+
+main {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  padding: 10px;
+}
+
+button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+}
