@@ -1,0 +1,70 @@
+aside {
+  background-color: var(--aside-bg-color);
+  color: var(--aside-text-color);
+  padding: 20px 40px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aside-account {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.aside-account h2 {
+  font-weight: bold;
+}
+
+.aside-account-icon {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12A10%2C10%200%200%2C0%2012%2C2M7.07%2C18.28C7.5%2C17.38%2010.12%2C16.5%2012%2C16.5C13.88%2C16.5%2016.5%2C17.38%2016.93%2C18.28C15.57%2C19.36%2013.86%2C20%2012%2C20C10.14%2C20%208.43%2C19.36%207.07%2C18.28M18.36%2C16.83C16.93%2C15.09%2013.46%2C14.5%2012%2C14.5C10.54%2C14.5%207.07%2C15.09%205.64%2C16.83C4.62%2C15.5%204%2C13.82%204%2C12C4%2C7.59%207.59%2C4%2012%2C4C16.41%2C4%2020%2C7.59%2020%2C12C20%2C13.82%2019.38%2C15.5%2018.36%2C16.83M12%2C6C10.06%2C6%208.5%2C7.56%208.5%2C9.5C8.5%2C11.44%2010.06%2C13%2012%2C13C13.94%2C13%2015.5%2C11.44%2015.5%2C9.5C15.5%2C7.56%2013.94%2C6%2012%2C6M12%2C11A1.5%2C1.5%200%200%2C1%2010.5%2C9.5A1.5%2C1.5%200%200%2C1%2012%2C8A1.5%2C1.5%200%200%2C1%2013.5%2C9.5A1.5%2C1.5%200%200%2C1%2012%2C11Z%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  width: var(--account-icon-wh-size);
+  height: var(--account-icon-wh-size);
+}
+
+.todays-task-icon {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Ebullseye%3C%2Ftitle%3E%3Cpath%20d%3D%22M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12A10%2C10%200%200%2C0%2012%2C2M12%2C4A8%2C8%200%200%2C1%2020%2C12A8%2C8%200%200%2C1%2012%2C20A8%2C8%200%200%2C1%204%2C12A8%2C8%200%200%2C1%2012%2C4M12%2C6A6%2C6%200%200%2C0%206%2C12A6%2C6%200%200%2C0%2012%2C18A6%2C6%200%200%2C0%2018%2C12A6%2C6%200%200%2C0%2012%2C6M12%2C8A4%2C4%200%200%2C1%2016%2C12A4%2C4%200%200%2C1%2012%2C16A4%2C4%200%200%2C1%208%2C12A4%2C4%200%200%2C1%2012%2C8M12%2C10A2%2C2%200%200%2C0%2010%2C12A2%2C2%200%200%2C0%2012%2C14A2%2C2%200%200%2C0%2014%2C12A2%2C2%200%200%2C0%2012%2C10Z%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  width: var(--option-icon-wh-size);
+  height: var(--option-icon-wh-size);
+}
+
+.week-tasks-icon {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Ecalendar-week%3C%2Ftitle%3E%3Cpath%20d%3D%22M6%201H8V3H16V1H18V3H19C20.11%203%2021%203.9%2021%205V19C21%2020.11%2020.11%2021%2019%2021H5C3.89%2021%203%2020.1%203%2019V5C3%203.89%203.89%203%205%203H6V1M5%208V19H19V8H5M7%2010H17V12H7V10Z%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  width: var(--option-icon-wh-size);
+  height: var(--option-icon-wh-size);
+}
+
+.all-tasks-icon {
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ctitle%3Elist-box-outline%3C%2Ftitle%3E%3Cpath%20d%3D%22M11%2015H17V17H11V15M9%207H7V9H9V7M11%2013H17V11H11V13M11%209H17V7H11V9M9%2011H7V13H9V11M21%205V19C21%2020.1%2020.1%2021%2019%2021H5C3.9%2021%203%2020.1%203%2019V5C3%203.9%203.9%203%205%203H19C20.1%203%2021%203.9%2021%205M19%205H5V19H19V5M9%2015H7V17H9V15Z%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  width: var(--option-icon-wh-size);
+  height: var(--option-icon-wh-size);
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+  pointer-events: auto;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.btnActive {
+  color: #9d5900;
+}

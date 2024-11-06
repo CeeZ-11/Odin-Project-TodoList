@@ -1,3 +1,8 @@
 import "./style.css";
+import { Header } from "./header.js";
+import { Container } from "./container.js";
 
-console.log("Hello World!");
+document.addEventListener("DOMContentLoaded", () => {
+  Header();
+  Container();
+});
