@@ -1,4 +1,5 @@
 import "./aside.css";
+import { Modal } from "./modal.js";
 export function Aside() {
   const asideContainer = document.createElement("aside");
 
@@ -132,6 +133,13 @@ export function Aside() {
     addProjectpath.setAttribute("fill", "#9d5900"); // Change SVG color on hover
   });
 
+  const projectTitleName = "Project";
+
+  btnaddProject.addEventListener("click", () => {
+    const modalInstance = Modal(projectTitleName); // Create modal instance
+    modalInstance.showDialog(); // Show the modal dialog
+  });
+
   btnaddProject.addEventListener("mouseleave", () => {
     addProjectpath.setAttribute("fill", "#493628"); // Reset to original color on mouse leave
   });
@@ -192,6 +200,13 @@ export function Aside() {
   // Change color of SVG based on hover or other events
   btnAddTag.addEventListener("mouseenter", () => {
     addTagpath.setAttribute("fill", "#9d5900"); // Change SVG color on hover
+  });
+
+  const taskTitleName = "Task";
+
+  btnAddTag.addEventListener("click", () => {
+    const modalInstance = Modal(taskTitleName); // Create modal instance
+    modalInstance.showDialog(); // Show the modal dialog
   });
 
   btnAddTag.addEventListener("mouseleave", () => {
