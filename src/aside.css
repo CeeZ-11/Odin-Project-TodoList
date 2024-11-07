@@ -59,12 +59,25 @@ button {
   display: flex;
   gap: 5px;
   align-items: center;
+  cursor: pointer;
 }
 
 button:hover {
-  cursor: pointer;
+  color: #9d5900;
 }
 
 .btnActive {
   color: #9d5900;
+}
+
+.project-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -12,4 +12,13 @@ export function Container() {
 
   containerDiv.appendChild(asideDiv);
   containerDiv.appendChild(contentDiv);
+
+  const buttons = document.querySelectorAll(".btnTasks");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      buttons.forEach((btn) => btn.classList.remove("btnActive"));
+      button.classList.add("btnActive");
+    });
+  });
 }
