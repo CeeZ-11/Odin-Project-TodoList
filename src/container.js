@@ -3,22 +3,24 @@ import { Aside } from "./aside.js";
 import { Content } from "./content.js";
 
 export function Container() {
+  const asideDiv = Aside();
+  const contentDiv = Content();
+
   const containerDiv = document.createElement("div");
   containerDiv.classList.add("container");
   document.body.appendChild(containerDiv);
 
-  const asideDiv = Aside();
-  const contentDiv = Content();
-
   containerDiv.appendChild(asideDiv);
   containerDiv.appendChild(contentDiv);
 
-  const buttons = document.querySelectorAll(".btnTasks");
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
+  containerDiv.addEventListener("click", (event) => {
+    if (event.target.classList.contains("btnTasks")) {
+      // Remove the active class from all buttons
+      const buttons = containerDiv.querySelectorAll(".btnTasks");
       buttons.forEach((btn) => btn.classList.remove("btnActive"));
-      button.classList.add("btnActive");
-    });
+
+      // Add the active class to the clicked button
+      event.target.classList.add("btnActive");
+    }
   });
 }

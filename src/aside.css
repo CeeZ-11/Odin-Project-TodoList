@@ -81,3 +81,21 @@ button:hover {
   justify-content: space-between;
   align-items: center;
 }
+
+.project-list-ul {
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 10px;
+  max-width: 200px;
+}
+
+.tag-list-ul {
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 10px;
+  max-width: 200px;
+}

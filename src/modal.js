@@ -1,4 +1,9 @@
 import "./modal.css";
+import { Projects } from "./projects.js";
+import { Tags } from "./tags.js";
+
+const tag = Tags();
+const project = Projects();
 
 export function Modal(title) {
   // Create container div for the modal
@@ -44,7 +49,7 @@ export function Modal(title) {
   titleInput.id = "title";
   titleInput.name = "title";
   titleInput.placeholder = `Add a ${title}`;
-  titleInput.pattern = "^[^0-9]+$";
+  titleInput.pattern = "^[a-zA-Z\\s]+$";
   titleInput.size = "15";
   titleInput.maxLength = "245";
   titleInput.required = true;
@@ -54,20 +59,23 @@ export function Modal(title) {
 
   const buttonDiv = document.createElement("div");
   buttonDiv.id = "button-div";
-  dialogContainer.appendChild(buttonDiv);
+  form.appendChild(buttonDiv);
 
   // Create button
   const addButton = document.createElement("button");
   addButton.id = "add-button";
   addButton.textContent = "Add";
+  addButton.type = "submit";
   addButton.autofocus = true;
 
-  addButton.onclick = () => {
+  buttonDiv.appendChild(addButton);
+
+  form.onsubmit = (event) => {
+    event.preventDefault(); // Prevent the form from refreshing the page
+    if (title === "Project") project.addProject(titleInput.value);
+    if (title === "Tag") tag.addTag(titleInput.value);
     closeDialog();
   };
-
-  // Append buttons to dialogContainer
-  buttonDiv.appendChild(addButton);
 
   // Append dialogContainer to dialog
   dialog.appendChild(dialogContainer);

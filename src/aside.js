@@ -39,15 +39,15 @@ export function Aside() {
   btntodaysTask.classList.add("btntodays-task");
   btntodaysTask.classList.add("btnTasks");
   btntodaysTask.classList.add("btnActive");
+  btntodaysTask.style.zIndex = "2";
   todaysTask.appendChild(btntodaysTask);
 
   const todaysTaskIcon = document.createElement("svg");
   todaysTaskIcon.classList.add("todays-task-icon");
   btntodaysTask.appendChild(todaysTaskIcon);
 
-  const todaysTaskText = document.createElement("p");
-  todaysTaskText.textContent = "Today's tasks";
-  btntodaysTask.appendChild(todaysTaskText);
+  const todaystasksText = document.createTextNode("Today's Tasks");
+  btntodaysTask.appendChild(todaystasksText);
 
   // Create week's tasks option
   const weekTasks = document.createElement("li");
@@ -63,8 +63,7 @@ export function Aside() {
   weekTasksIcon.classList.add("week-tasks-icon");
   btnweekTasks.appendChild(weekTasksIcon);
 
-  const weekTasksText = document.createElement("p");
-  weekTasksText.textContent = "Week's Tasks";
+  const weekTasksText = document.createTextNode("Week's Tasks");
   btnweekTasks.appendChild(weekTasksText);
 
   // Create all my tasks option
@@ -81,8 +80,7 @@ export function Aside() {
   allTasksIcon.classList.add("all-tasks-icon");
   btnallTasks.appendChild(allTasksIcon);
 
-  const allTasksText = document.createElement("p");
-  allTasksText.textContent = "All My Tasks";
+  const allTasksText = document.createTextNode("All My Tasks");
   btnallTasks.appendChild(allTasksText);
 
   //--------------------------------------------------------------
@@ -202,7 +200,7 @@ export function Aside() {
     addTagpath.setAttribute("fill", "#9d5900"); // Change SVG color on hover
   });
 
-  const taskTitleName = "Task";
+  const taskTitleName = "Tag";
 
   btnAddTag.addEventListener("click", () => {
     const modalInstance = Modal(taskTitleName); // Create modal instance

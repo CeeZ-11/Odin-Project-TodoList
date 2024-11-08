@@ -26,6 +26,8 @@ dialog {
 
 #dialog-form {
   display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   flex: 0.9;
 }
 
@@ -39,7 +41,7 @@ input {
   border-radius: 5px;
   box-sizing: border-box;
   outline: none;
-  height: 70%;
+  height: 100%;
 }
 
 #input-title {
