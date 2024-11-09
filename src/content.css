@@ -3,4 +3,46 @@
   color: var(--main-text-color);
   padding: 10px;
   flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr; /* Header at the top, table below */
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Header styling */
+.contentHeader {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+/* Table container styling */
+.table-content {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* Responsive columns */
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.table-content-not-weekly {
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+/* Table styling */
+.table {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  background-color: #fafafa;
+  text-align: center;
+  border-radius: 5px;
+  min-width: 300px;
 }

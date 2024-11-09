@@ -18,6 +18,8 @@ export function Tags() {
 
         const button = document.createElement("button");
         button.classList.add("btnTasks");
+        button.classList.add("btnTag");
+        button.classList.add("btnTasks");
         button.textContent = `#${tag}`;
 
         li.appendChild(button);
@@ -27,5 +29,6 @@ export function Tags() {
 
   return {
     addTag,
+    tags,
   };
 }

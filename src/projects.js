@@ -17,6 +17,8 @@ export function Projects() {
 
         const button = document.createElement("button");
         button.classList.add("btnTasks");
+        button.classList.add("btnProject");
+        button.classList.add("btntags-list");
         button.textContent = project;
 
         li.appendChild(button);
@@ -26,5 +28,6 @@ export function Projects() {
 
   return {
     addProject,
+    projects,
   };
 }
