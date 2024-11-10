@@ -1,9 +1,11 @@
 import "./container.css";
 import { Aside } from "./aside.js";
 import { Content } from "./content.js";
+import { Projects } from "./projects.js";
 
 export function Container() {
   let tableTitle = "";
+  const { displayProjectsAside } = Projects();
   const asideDiv = Aside();
   const { contentDiv, createTable } = Content();
   let { num, contentTable } = Content();
@@ -13,6 +15,7 @@ export function Container() {
   document.body.appendChild(containerDiv);
 
   containerDiv.appendChild(asideDiv);
+  displayProjectsAside();
   containerDiv.appendChild(contentDiv);
 
   containerDiv.addEventListener("click", (event) => {

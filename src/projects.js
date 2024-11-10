@@ -1,9 +1,8 @@
 export function Projects() {
-  const projects = [];
+  const projects = ["Personal"];
 
   function addProject(name) {
     projects.push(name);
-    displayProjectsAside();
   }
 
   function displayProjectsAside() {
@@ -28,6 +27,7 @@ export function Projects() {
 
   return {
     addProject,
+    displayProjectsAside,
     projects,
   };
 }
