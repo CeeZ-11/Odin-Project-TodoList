@@ -2,6 +2,7 @@ import "./container.css";
 import { Aside } from "./aside.js";
 import { Content } from "./content.js";
 import { Projects } from "./projects.js";
+import { Task } from "./task.js";
 
 export function Container() {
   let tableTitle = "";
@@ -48,6 +49,36 @@ export function Container() {
       }
 
       createTable(num, contentTable, tableTitle);
+
+      if (contentTable === 2) {
+        Task.displayAllTasks();
+      } else if (contentTable === 3) {
+        Task.displayTasksByProject(tableTitle);
+      } else if (contentTable === 4) {
+        Task.displayTasksByTag(tableTitle);
+      } else if (contentTable === 1) {
+        let allWeeks = document.querySelectorAll("input");
+
+        Array.from(allWeeks).forEach((week) => {
+          // Get the data-date attribute of each week element
+          let dateAttribute = week.getAttribute("data-date");
+
+          if (dateAttribute) {
+            // Use split and trim on the data-date attribute value
+            let formattedDate = dateAttribute.split(",")[1].trim();
+
+            Task.displayTasksByDate(formattedDate);
+          }
+        });
+      } else if (contentTable === 0) {
+        let today = document.querySelector("input");
+        let formattedDate = today
+          .getAttribute("data-date")
+          .split(",")[1]
+          .trim();
+
+        Task.displayTasksByToday(formattedDate);
+      }
     }
   });
 }

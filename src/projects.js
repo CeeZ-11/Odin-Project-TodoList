@@ -3,6 +3,8 @@ import "./projects.css";
 let projects = ["Personal"];
 
 export function Projects() {
+  let selectedProject = projects[0];
+
   // Add project
   function addProject(name) {
     projects.push(name);
@@ -36,10 +38,16 @@ export function Projects() {
     }
   }
 
+  // Assign the selected project to the value of SVG element
+  function selectModal() {
+    const svgProject = document.querySelector(".svg-project");
+    if (svgProject) {
+      svgProject.setAttribute("data-project", selectedProject);
+    }
+  }
+
   // Function to display projects in the modal
   function displayProjectsModal() {
-    let selectedProject = projects[0];
-
     // Check for an existing modal and remove it if found
     const existingModal = document.querySelector(".modal-project");
     if (existingModal) {
@@ -88,6 +96,9 @@ export function Projects() {
 
         selectedProject = event.target.textContent;
         event.target.classList.add("btnSelectedProject");
+
+        selectModal();
+        modal.remove();
       }
     });
 
@@ -97,6 +108,7 @@ export function Projects() {
         !modal.contains(event.target) &&
         !event.target.classList.contains("svg-project")
       ) {
+        selectModal();
         modal.remove();
         document.removeEventListener("click", closeModal); // Cleanup event listener
       }
@@ -110,5 +122,6 @@ export function Projects() {
     displayProjectsAside, // Only affects the sidebar
     displayProjectsModal, // Only affects the modal
     projects,
+    selectedProject,
   };
 }
