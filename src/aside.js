@@ -150,6 +150,7 @@ export function Aside() {
   // Projects List ul
   const projectListul = document.createElement("ul");
   projectListul.classList.add("project-list-ul");
+  projectListul.classList.add("displayProject");
   projectListContainer.appendChild(projectListul);
 
   //--------------------------------------------------------------

@@ -1,4 +1,5 @@
 import "./content.css";
+import { Projects } from "./projects";
 export function Content() {
   let num = 0;
   let contentTable = 0;
@@ -11,7 +12,7 @@ export function Content() {
     "Saturday",
     "Sunday",
   ];
-
+  const { displayProjectsModal } = Projects();
   const contentDiv = document.createElement("div");
   contentDiv.classList.add("content");
 
@@ -44,6 +45,7 @@ export function Content() {
       table.appendChild(body);
       table.appendChild(footer);
 
+      // Create add task form
       const form = document.createElement("form");
       form.action = "";
       form.method = "get";
@@ -51,60 +53,83 @@ export function Content() {
 
       footer.appendChild(form);
 
-      // Create input for task
-      const inputFooterDiv = document.createElement("div");
-      inputFooterDiv.id = "input-footer-div";
+      function createAddTaskForm() {
+        // Create input for task
+        const inputFooterDiv = document.createElement("div");
+        inputFooterDiv.id = "input-footer-div";
 
-      const footerInput = document.createElement("input");
-      footerInput.type = "text";
-      footerInput.id = "title";
-      footerInput.name = "title";
-      footerInput.placeholder = `Add Task`;
-      footerInput.pattern = "^[a-zA-Z\\s]+$";
-      footerInput.size = "15";
-      footerInput.maxLength = "245";
-      footerInput.required = true;
+        // Create svg project except for weeks tasks
+        if (contentTable != 1 && contentTable != 3) {
+          const svgProject = document.createElement("svg");
+          svgProject.classList.add("svg-project");
+          inputFooterDiv.appendChild(svgProject);
 
-      inputFooterDiv.appendChild(footerInput);
-      form.appendChild(inputFooterDiv);
+          svgProject.addEventListener("click", () => {
+            displayProjectsModal();
+          });
+        }
 
-      const buttonDiv = document.createElement("div");
-      buttonDiv.id = "button-div";
-      form.appendChild(buttonDiv);
+        const footerInput = document.createElement("input");
+        footerInput.type = "text";
 
-      // Create button
-      const addTaskButton = document.createElement("button");
-      addTaskButton.id = "add-task-button";
-      addTaskButton.textContent = "Add";
-      addTaskButton.type = "submit";
-      addTaskButton.autofocus = true;
+        // Assign specific style for weeks tasks input
+        if (contentTable != 1 && contentTable != 3)
+          footerInput.id = "input-footer";
+        if (contentTable == 1) footerInput.id = "input";
 
-      buttonDiv.appendChild(addTaskButton);
+        footerInput.name = "title";
+        footerInput.placeholder = `Add Task`;
+        footerInput.pattern = "^[a-zA-Z\\s]+$";
+        footerInput.size = "15";
+        footerInput.maxLength = "245";
+        footerInput.required = true;
 
-      form.onsubmit = (event) => {
-        event.preventDefault(); // Prevent the form from refreshing the page  ----------------------------------------------------------------
-      };
+        inputFooterDiv.appendChild(footerInput);
+        form.appendChild(inputFooterDiv);
+
+        const buttonDiv = document.createElement("div");
+        buttonDiv.id = "button-div";
+        form.appendChild(buttonDiv);
+
+        // Create button
+        const addTaskButton = document.createElement("button");
+        addTaskButton.id = "add-task-button";
+        addTaskButton.textContent = "Add";
+        addTaskButton.type = "submit";
+        addTaskButton.autofocus = true;
+
+        buttonDiv.appendChild(addTaskButton);
+
+        form.onsubmit = (event) => {
+          event.preventDefault(); // Prevent the form from refreshing the page  ----------------------------------------------------------------
+        };
+      }
 
       if (contentTable == 1) {
         tableContainer.classList.remove("table-content-not-weekly");
-        header.textContent = `${days[i]}`; // Placeholder text; you can add table rows here
+        header.textContent = `${days[i]}`;
         headerDiv.textContent = "Week's Tasks";
+        createAddTaskForm();
       } else if (contentTable == 0 && i == 0) {
         tableContainer.classList.add("table-content-not-weekly");
         header.textContent = "Today";
         headerDiv.textContent = "Today's Tasks";
+        createAddTaskForm();
       } else if (contentTable == 2 && i == 0) {
         tableContainer.classList.add("table-content-not-weekly");
         header.textContent = `All My Tasks`;
         headerDiv.textContent = "All My Tasks";
+        createAddTaskForm();
       } else if (contentTable == 3 && i == 0) {
         tableContainer.classList.add("table-content-not-weekly");
         header.textContent = "Tasks";
         headerDiv.textContent = `Project ${tableTitle}`;
+        createAddTaskForm();
       } else if (contentTable == 4 && i == 0) {
         tableContainer.classList.add("table-content-not-weekly");
         header.textContent = "Tasks";
         headerDiv.textContent = `Tag ${tableTitle}`;
+        createAddTaskForm();
       }
 
       tableContainer.appendChild(table);
