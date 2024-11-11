@@ -1,5 +1,8 @@
 import "./content.css";
 import { Projects } from "./projects";
+import { Task } from "./task.js";
+
+let tasks = [];
 export function Content() {
   let num = 0;
   let contentTable = 0;
@@ -101,7 +104,30 @@ export function Content() {
         buttonDiv.appendChild(addTaskButton);
 
         form.onsubmit = (event) => {
-          event.preventDefault(); // Prevent the form from refreshing the page  ----------------------------------------------------------------
+          event.preventDefault(); // Prevent the form from refreshing the page
+
+          const taskTitle = footerInput.value;
+          const taskDescription = ""; // Add any description field if needed
+          const taskDueDate = ""; // You can add a date input to collect this
+          const taskProject = ""; // Add logic to determine the project if needed
+          const taskNote = ""; // Add logic for task notes if needed
+          const taskTag = ""; // Add logic for task tags if needed
+          const taskCompleted = false; // Set default to false for new tasks
+
+          // Create a new task
+          const newTask = new Task(
+            taskTitle,
+            taskDescription,
+            taskDueDate,
+            taskProject,
+            taskNote,
+            taskTag,
+            taskCompleted
+          );
+
+          newTask.logTask();
+
+          footerInput.value = "";
         };
       }
 
