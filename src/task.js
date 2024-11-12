@@ -1,4 +1,8 @@
 import { format } from "date-fns";
+import { Projects } from "./projects";
+
+const { displayProjectsModal } = Projects();
+let { selectedProject } = Projects();
 export class Task {
   static tasksObject = {}; // Static property to store all tasks by ID
 
@@ -51,6 +55,9 @@ export class Task {
   }
 
   static displayTaskInfo(task) {
+    const btnAllTask = document.querySelector(".btnall-tasks");
+    const tableBody = document.querySelector(".table-body");
+
     const taskInfoTable = document.querySelector(".table-display-info");
     taskInfoTable.innerHTML = "";
 
@@ -67,7 +74,7 @@ export class Task {
     taskInfoDiv.appendChild(taskInfoBody);
 
     const taskId = document.createElement("h4");
-    taskId.textContent = `Task ID: ${task.id}`;
+    taskId.textContent = task.id;
     taskInfoHeader.appendChild(taskId);
 
     const taskCompleted = document.createElement("button");
@@ -89,8 +96,9 @@ export class Task {
     taskDateProjTagDiv.classList.add("task-date-proj-tag-div");
     taskInfoBody.appendChild(taskDateProjTagDiv);
 
-    const taskDate = document.createElement("button");
-    taskDate.textContent = `Due Date: ${task.duedate}`;
+    const taskDate = document.createElement("input");
+    taskDate.value = task.duedate;
+    taskDate.type = "date";
     taskDateProjTagDiv.appendChild(taskDate);
 
     const taskDateSvg = document.createElement("svg");
@@ -99,6 +107,8 @@ export class Task {
 
     const taskProject = document.createElement("button");
     taskProject.textContent = `Project: ${task.project}`;
+    taskProject.setAttribute("data-project", task.project);
+    taskProject.classList.add("project-info");
     taskDateProjTagDiv.appendChild(taskProject);
 
     const taskProjectSvg = document.createElement("svg");
@@ -136,6 +146,62 @@ export class Task {
     const taskNote = document.createElement("textarea");
     taskNote.textContent = task.note;
     taskNoteDiv.appendChild(taskNote);
+
+    const taskDelete = document.createElement("button");
+    taskDelete.textContent = "Delete";
+    taskDelete.classList.add("task-delete");
+
+    taskInfoBody.appendChild(taskDelete);
+
+    taskDelete.addEventListener("click", () => {
+      // Remove the task from the DOM
+      const taskDiv = document.getElementById(`task-${task.id}`);
+      taskDiv.remove();
+      // Remove the task from the static tasksObject
+      delete Task.tasksObject[task.id];
+      taskInfoTable.innerHTML = "";
+    });
+
+    taskCompleted.addEventListener("click", () => {
+      task.completed = !task.completed;
+      taskCompleted.textContent = task.completed
+        ? "Completed"
+        : "Mark as complete";
+    });
+
+    taskTitle.addEventListener("blur", () => {
+      task.title = taskTitle.value;
+
+      tableBody.innerHTML = "";
+      if (btnAllTask.classList.contains("btnActive")) {
+        Task.displayAllTasks();
+      } else {
+        Task.displayTasksByToday(task.duedate);
+      }
+    });
+
+    taskDate.addEventListener("click", () => {
+      taskDate.addEventListener("change", () => {
+        taskDate.textContent = `Due Date: ${taskDate.value}`;
+        task.duedate = taskDate.value;
+      });
+    });
+
+    taskProject.addEventListener("click", () => {
+      task.project = selectedProject;
+    });
+
+    taskTag.addEventListener("input", () => {
+      task.tag = taskTag.value;
+    });
+
+    taskDesc.addEventListener("blur", () => {
+      task.description = taskDesc.value;
+    });
+
+    taskNote.addEventListener("blur", () => {
+      task.note = taskNote.value;
+    });
 
     taskInfoTable.appendChild(taskInfoDiv);
   }

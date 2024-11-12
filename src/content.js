@@ -191,8 +191,11 @@ export function Content() {
       if (event.target.classList.contains("btnTask")) {
         const taskId = event.target.getAttribute("data-task-id");
         const task = Task.tasksObject[taskId];
+        const btnweekTasks = document.querySelector(".btnweek-tasks");
 
-        Task.displayTaskInfo(task);
+        if (!btnweekTasks.classList.contains("btnActive")) {
+          Task.displayTaskInfo(task);
+        }
       }
     });
   }
