@@ -43,6 +43,12 @@ export function Content() {
       header.classList.add("table-header");
       const body = document.createElement("div");
       body.classList.add("table-body");
+
+      // Adds class to display info table on the right side
+      if (contentTable != 1 && i === 1) {
+        body.classList.add("table-display-info");
+      }
+
       const footer = document.createElement("div");
       footer.classList.add("table-footer");
       table.appendChild(header);
