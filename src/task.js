@@ -43,6 +43,7 @@ export class Task {
     const btnTask = document.createElement("button");
     btnTask.textContent = this.title;
     btnTask.classList.add("btnTask");
+    btnTask.setAttribute("data-task-id", this.id);
     taskDiv.appendChild(btnTask);
 
     document.querySelector(".table-body").appendChild(taskDiv);
@@ -50,6 +51,9 @@ export class Task {
   }
 
   static displayTaskInfo(task) {
+    const taskInfoTable = document.querySelector(".table-display-info");
+    taskInfoTable.innerHTML = "";
+
     const taskInfoDiv = document.createElement("div");
     taskInfoDiv.classList.add("task-info-container");
 
@@ -132,6 +136,8 @@ export class Task {
     const taskNote = document.createElement("textarea");
     taskNote.textContent = task.note;
     taskNoteDiv.appendChild(taskNote);
+
+    taskInfoTable.appendChild(taskInfoDiv);
   }
 
   static displayAllTasks() {

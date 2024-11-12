@@ -185,6 +185,16 @@ export function Content() {
 
       tableContainer.appendChild(table);
     }
+
+    // Adds add event listener for task if click will display task info to the table on the right
+    document.addEventListener("click", (event) => {
+      if (event.target.classList.contains("btnTask")) {
+        const taskId = event.target.getAttribute("data-task-id");
+        const task = Task.getTaskById(taskId);
+
+        displayTaskInfo(task);
+      }
+    });
   }
 
   return { num, contentTable, contentDiv, createTable };
