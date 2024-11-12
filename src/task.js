@@ -42,6 +42,7 @@ export class Task {
 
     const btnTask = document.createElement("button");
     btnTask.textContent = this.title;
+    btnTask.classList.add("btnTask");
     taskDiv.appendChild(btnTask);
 
     document.querySelector(".table-body").appendChild(taskDiv);
@@ -100,6 +101,7 @@ export class Task {
 
           const btnTask = document.createElement("button");
           btnTask.textContent = task.title;
+          btnTask.classList.add("btnTask");
           taskDiv.appendChild(btnTask);
 
           tableBody.appendChild(taskDiv); // Display the task if the due date matches
