@@ -190,9 +190,9 @@ export function Content() {
     document.addEventListener("click", (event) => {
       if (event.target.classList.contains("btnTask")) {
         const taskId = event.target.getAttribute("data-task-id");
-        const task = Task.getTaskById(taskId);
+        const task = Task.tasksObject[taskId];
 
-        displayTaskInfo(task);
+        Task.displayTaskInfo(task);
       }
     });
   }
