@@ -49,6 +49,91 @@ export class Task {
     this.logTask;
   }
 
+  static displayTaskInfo(task) {
+    const taskInfoDiv = document.createElement("div");
+    taskInfoDiv.classList.add("task-info-container");
+
+    const taskInfoHeader = document.createElement("div");
+    taskInfoHeader.textContent = "Task Information";
+    taskInfoHeader.classList.add("task-info-header");
+    taskInfoDiv.appendChild(taskInfoHeader);
+
+    const taskInfoBody = document.createElement("div");
+    taskInfoBody.classList.add("task-info-body");
+    taskInfoDiv.appendChild(taskInfoBody);
+
+    const taskId = document.createElement("h4");
+    taskId.textContent = `Task ID: ${task.id}`;
+    taskInfoHeader.appendChild(taskId);
+
+    const taskCompleted = document.createElement("button");
+    taskCompleted.textContent = task.completed
+      ? "Completed"
+      : "Mark as complete";
+    taskCompleted.classList.add("task-completed");
+    taskInfoHeader.appendChild(taskCompleted);
+
+    const taskTitleDiv = document.createElement("div");
+    taskTitleDiv.classList.add("task-title-div");
+    taskInfoBody.appendChild(taskTitleDiv);
+
+    const taskTitle = document.createElement("textarea");
+    taskTitle.textContent = task.title;
+    taskTitleDiv.appendChild(taskTitle);
+
+    const taskDateProjTagDiv = document.createElement("div");
+    taskDateProjTagDiv.classList.add("task-date-proj-tag-div");
+    taskInfoBody.appendChild(taskDateProjTagDiv);
+
+    const taskDate = document.createElement("button");
+    taskDate.textContent = `Due Date: ${task.duedate}`;
+    taskDateProjTagDiv.appendChild(taskDate);
+
+    const taskDateSvg = document.createElement("svg");
+    taskDateSvg.classList.add("taskDateSvg");
+    taskDate.appendChild(taskDateSvg);
+
+    const taskProject = document.createElement("button");
+    taskProject.textContent = `Project: ${task.project}`;
+    taskDateProjTagDiv.appendChild(taskProject);
+
+    const taskProjectSvg = document.createElement("svg");
+    taskProjectSvg.classList.add("taskProjectSvg");
+    taskProject.appendChild(taskProjectSvg);
+
+    const taskTag = document.createElement("button");
+    taskTag.textContent = `Tag: ${task.tag}`;
+    taskDateProjTagDiv.appendChild(taskTag);
+
+    const taskTagSvg = document.createElement("svg");
+    taskTagSvg.classList.add("taskTagSvg");
+    taskTag.appendChild(taskTagSvg);
+
+    const taskDescDiv = document.createElement("div");
+    taskDescDiv.classList.add("task-desc-div");
+    taskInfoBody.appendChild(taskDescDiv);
+
+    const taskDescHeader = document.createElement("h4");
+    taskDescHeader.textContent = "Description";
+    taskDescDiv.appendChild(taskDescHeader);
+
+    const taskDesc = document.createElement("textarea");
+    taskDesc.textContent = task.description;
+    taskDescDiv.appendChild(taskDesc);
+
+    const taskNoteDiv = document.createElement("div");
+    taskNoteDiv.classList.add("task-note-div");
+    taskInfoBody.appendChild(taskNoteDiv);
+
+    const taskNoteHeader = document.createElement("h4");
+    taskNoteHeader.textContent = "Note";
+    taskNoteDiv.appendChild(taskNoteHeader);
+
+    const taskNote = document.createElement("textarea");
+    taskNote.textContent = task.note;
+    taskNoteDiv.appendChild(taskNote);
+  }
+
   static displayAllTasks() {
     const tableBody = document.querySelector(".table-body");
     tableBody.innerHTML = ""; // Clear existing tasks in the DOM
