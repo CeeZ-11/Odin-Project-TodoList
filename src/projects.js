@@ -1,6 +1,6 @@
 import "./projects.css";
 
-let projects = ["Personal"];
+export let projects = ["Personal"];
 
 export function Projects() {
   let selectedProject = projects[0];
@@ -121,7 +121,6 @@ export function Projects() {
     addProject,
     displayProjectsAside, // Only affects the sidebar
     displayProjectsModal, // Only affects the modal
-    projects,
     selectedProject,
   };
 }

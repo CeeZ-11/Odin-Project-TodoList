@@ -1,7 +1,9 @@
 import { format } from "date-fns";
-import { Projects } from "./projects";
+import { Projects } from "./projects.js";
+import { InfoModal } from "./infoModal.js";
+import { tags } from "./tags.js";
 
-const { displayProjectsModal } = Projects();
+const infoModal = InfoModal();
 let { selectedProject } = Projects();
 export class Task {
   static tasksObject = {}; // Static property to store all tasks by ID
@@ -52,6 +54,39 @@ export class Task {
 
     document.querySelector(".table-body").appendChild(taskDiv);
     this.logTask;
+  }
+
+  static getInfoModalProject(getId, returnProject) {
+    const getIdAsString = String(getId);
+
+    for (const taskId in Task.tasksObject) {
+      const task = Task.tasksObject[taskId];
+
+      if (task.id == getIdAsString) {
+        // Compare the task's id property with getId
+        task.project = returnProject; // Update the project property
+      }
+    }
+
+    // Change project to selected project in the display task info table
+    const projectInfo = document.querySelector(".project-info");
+    projectInfo.textContent = `Project: ${returnProject}`;
+  }
+
+  static getInfoModalTag(getId, returnTag) {
+    const getIdAsString = String(getId);
+
+    for (const taskId in Task.tasksObject) {
+      const task = Task.tasksObject[taskId];
+      if (task.id == getIdAsString) {
+        // Compare the task's id property with getId
+        task.tag = returnTag; // Update the tag property
+      }
+
+      // Change tag to selected tag in the display task info table
+      const tagInfo = document.querySelector(".tag-info");
+      tagInfo.textContent = `Tag: ${returnTag}`;
+    }
   }
 
   static displayTaskInfo(task) {
@@ -107,7 +142,6 @@ export class Task {
 
     const taskProject = document.createElement("button");
     taskProject.textContent = `Project: ${task.project}`;
-    taskProject.setAttribute("data-project", task.project);
     taskProject.classList.add("project-info");
     taskDateProjTagDiv.appendChild(taskProject);
 
@@ -117,6 +151,7 @@ export class Task {
 
     const taskTag = document.createElement("button");
     taskTag.textContent = `Tag: ${task.tag}`;
+    taskTag.classList.add("tag-info");
     taskDateProjTagDiv.appendChild(taskTag);
 
     const taskTagSvg = document.createElement("svg");
@@ -188,11 +223,16 @@ export class Task {
     });
 
     taskProject.addEventListener("click", () => {
-      task.project = selectedProject;
+      selectedProject = task.project;
+      infoModal.infoModalProject(selectedProject);
     });
 
-    taskTag.addEventListener("input", () => {
-      task.tag = taskTag.value;
+    taskTag.addEventListener("click", () => {
+      if (tags != null && tags.length > 0) {
+        let selectedTag = taskTag.value;
+        console.log("selectedTag: " + selectedTag);
+        infoModal.infoModalTag(selectedTag);
+      }
     });
 
     taskDesc.addEventListener("blur", () => {

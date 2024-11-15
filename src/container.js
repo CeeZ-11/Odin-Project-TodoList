@@ -43,6 +43,8 @@ export function Container() {
         num = 1;
         contentTable = 4;
         tableTitle = event.target.textContent;
+        tableTitle = tableTitle.replace("#", "");
+        console.log("tableTitle :  " + tableTitle);
       } else {
         num = 1;
         contentTable = 0;

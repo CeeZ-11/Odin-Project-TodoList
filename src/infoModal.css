@@ -1,0 +1,41 @@
+.modal-back-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 1; /* Make sure it's behind the modal */
+}
+
+#modal-info {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  width: 360px;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  z-index: 2;
+}
+
+.modal-project-body,
+.modal-tag-body {
+  flex: 1;
+}
+
+.modal-project-ul,
+.modal-tag-ul {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.btnInfoSelected {
+  color: #9d5900;
+}

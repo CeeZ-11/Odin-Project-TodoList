@@ -1,6 +1,7 @@
-export function Tags() {
-  const tags = [];
+import { Task } from "./task";
 
+export let tags = [];
+export function Tags() {
   function addTag(name) {
     tags.push(name);
     console.log("tags");
