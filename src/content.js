@@ -2,7 +2,9 @@ import "./content.css";
 import { Projects } from "./projects";
 import { Task } from "./task.js";
 import { format, addDays } from "date-fns";
+import { InfoModal } from "./infoModal.js";
 
+const infoModal = InfoModal();
 export function Content() {
   let num = 0;
   let contentTable = 0;
@@ -160,6 +162,7 @@ export function Content() {
         sanitizedClass = header.textContent.split(",")[1].trim();
         header.classList.add("weeksTable");
         body.classList.add(sanitizedClass);
+        body.classList.add("table-content-weekly");
         createAddTaskForm();
       } else if (contentTable == 0 && i == 0) {
         tableContainer.classList.add("table-content-not-weekly");
@@ -185,19 +188,10 @@ export function Content() {
 
       tableContainer.appendChild(table);
     }
+    // ERROR HERE!!!!!!!!!!!!!!!!
 
     // Adds add event listener for task if click will display task info to the table on the right
-    document.addEventListener("click", (event) => {
-      if (event.target.classList.contains("btnTask")) {
-        const taskId = event.target.getAttribute("data-task-id");
-        const task = Task.tasksObject[taskId];
-        const btnweekTasks = document.querySelector(".btnweek-tasks");
-
-        if (!btnweekTasks.classList.contains("btnActive")) {
-          Task.displayTaskInfo(task);
-        }
-      }
-    });
+    //document.addEventListener("click", (event) => {});
   }
 
   return { num, contentTable, contentDiv, createTable };

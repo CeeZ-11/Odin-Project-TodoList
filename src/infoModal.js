@@ -22,6 +22,23 @@ export function InfoModal() {
     document.body.appendChild(modalContainer);
   }
 
+  function displayWeeklyInfoModal() {
+    const existingWeeklyModalContainer =
+      document.querySelector("modal-weekly-info");
+
+    if (existingWeeklyModalContainer) {
+      existingWeeklyModalContainer.remove();
+    }
+
+    const modalBackContainer = document.createElement("div");
+    modalBackContainer.classList.add("modal-weekly-back-container");
+    document.body.appendChild(modalBackContainer);
+
+    const modalWeeklyContainer = document.createElement("div");
+    modalWeeklyContainer.classList.add("modal-weekly-info");
+    document.body.appendChild(modalWeeklyContainer);
+  }
+
   function infoModalProject(selectedProject) {
     displayInfoModal();
     const modalContainer = document.querySelector("#modal-info");
@@ -72,8 +89,8 @@ export function InfoModal() {
 
       Task.getInfoModalProject(getId, returnSelectedProject);
 
-      modalContainer.remove();
       modalBackContainer.remove();
+      modalContainer.remove();
     });
 
     modalContainer.appendChild(modalProjectContainer);
@@ -130,8 +147,8 @@ export function InfoModal() {
 
       Task.getInfoModalTag(getId, returnSelectedTag);
 
-      modalContainer.remove();
       modalBackContainer.remove();
+      modalContainer.remove();
     });
 
     modalContainer.appendChild(modalTagContainer);
@@ -150,5 +167,5 @@ export function InfoModal() {
     });
   }
 
-  return { infoModalProject, infoModalTag };
+  return { infoModalProject, infoModalTag, displayWeeklyInfoModal };
 }

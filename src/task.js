@@ -5,6 +5,7 @@ import { tags } from "./tags.js";
 
 const infoModal = InfoModal();
 let { selectedProject } = Projects();
+let taskInfoTable;
 export class Task {
   static tasksObject = {}; // Static property to store all tasks by ID
 
@@ -93,8 +94,25 @@ export class Task {
     const btnAllTask = document.querySelector(".btnall-tasks");
     const tableBody = document.querySelector(".table-body");
 
-    const taskInfoTable = document.querySelector(".table-display-info");
-    taskInfoTable.innerHTML = "";
+    const btnWeekly = document.querySelector(".btnweek-tasks");
+
+    if (btnWeekly && btnWeekly.classList.contains("btnActive")) {
+      taskInfoTable = document.querySelector(".modal-weekly-info");
+      taskInfoTable.innerHTML = "";
+
+      // if background modal is selected close modal
+      const modalBackContainer = document.querySelector(
+        ".modal-weekly-back-container"
+      );
+
+      modalBackContainer.addEventListener("click", () => {
+        modalBackContainer.remove();
+        taskInfoTable.remove();
+      });
+    } else {
+      taskInfoTable = document.querySelector(".table-display-info");
+      taskInfoTable.innerHTML = "";
+    }
 
     const taskInfoDiv = document.createElement("div");
     taskInfoDiv.classList.add("task-info-container");
@@ -297,8 +315,9 @@ export class Task {
           taskDiv.id = `task-${taskId}`;
 
           const btnTask = document.createElement("button");
+          btnTask.setAttribute("data-task-id", taskId);
           btnTask.textContent = task.title;
-          btnTask.classList.add("btnTask");
+          btnTask.classList.add("btnTaskWeekly");
           taskDiv.appendChild(btnTask);
 
           tableBody.appendChild(taskDiv); // Display the task if the due date matches

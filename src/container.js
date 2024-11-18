@@ -3,6 +3,9 @@ import { Aside } from "./aside.js";
 import { Content } from "./content.js";
 import { Projects } from "./projects.js";
 import { Task } from "./task.js";
+import { InfoModal } from "./infoModal.js";
+
+const infoModal = InfoModal();
 
 export function Container() {
   let tableTitle = "";
@@ -81,6 +84,29 @@ export function Container() {
 
         Task.displayTasksByToday(formattedDate);
       }
+      return; // Stop further execution to prevent overlap
+    }
+    // Handle btnTask clicks
+    if (event.target.classList.contains("btnTask")) {
+      const taskId = event.target.getAttribute("data-task-id");
+      const task = Task.tasksObject[taskId];
+      const btnweekTasks = document.querySelector(".btnweek-tasks");
+
+      if (!btnweekTasks.classList.contains("btnActive")) {
+        Task.displayTaskInfo(task);
+      }
+      return; // Stop further execution to prevent overlap
+    }
+
+    // Handle btnTaskWeekly clicks
+    if (event.target.classList.contains("btnTaskWeekly")) {
+      console.log("Week Event Listener Triggered"); // Debugging
+      const taskId = event.target.getAttribute("data-task-id");
+      const task = Task.tasksObject[taskId];
+
+      infoModal.displayWeeklyInfoModal();
+      Task.displayTaskInfo(task);
+      return; // Stop further execution to prevent overlap
     }
   });
 }

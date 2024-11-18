@@ -5,7 +5,33 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 3; /* Make sure it's behind the modal */
+}
+
+.modal-weekly-back-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
   z-index: 1; /* Make sure it's behind the modal */
+}
+
+.modal-weekly-info {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  width: 580px;
+  height: 757px;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  z-index: 2;
 }
 
 #modal-info {
@@ -21,7 +47,7 @@
   top: 50%;
   left: 50%;
   background-color: white;
-  z-index: 2;
+  z-index: 4;
 }
 
 .modal-project-body,
