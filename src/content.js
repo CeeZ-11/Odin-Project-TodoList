@@ -2,9 +2,6 @@ import "./content.css";
 import { Projects } from "./projects";
 import { Task } from "./task.js";
 import { format, addDays } from "date-fns";
-import { InfoModal } from "./infoModal.js";
-
-const infoModal = InfoModal();
 export function Content() {
   let num = 0;
   let contentTable = 0;
@@ -188,10 +185,6 @@ export function Content() {
 
       tableContainer.appendChild(table);
     }
-    // ERROR HERE!!!!!!!!!!!!!!!!
-
-    // Adds add event listener for task if click will display task info to the table on the right
-    //document.addEventListener("click", (event) => {});
   }
 
   return { num, contentTable, contentDiv, createTable };
