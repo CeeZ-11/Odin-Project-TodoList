@@ -11,6 +11,23 @@ export function Projects() {
 
     // Update the aside project list after adding a new project
     displayProjectsAside();
+    saveToLocalStorage();
+  }
+
+  function saveToLocalStorage() {
+    // Convert the projects to a JSON string and store it in localStorage
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }
+
+  function loadProjectsFromLocalStorage() {
+    // Check if there are projects in localStorage and load them
+    const savedProjects = localStorage.getItem("projects");
+
+    if (savedProjects) {
+      projects = JSON.parse(savedProjects);
+      console.log("Projects loaded: " + JSON.stringify(projects));
+      displayProjectsAside();
+    }
   }
 
   // Function to display projects in the sidebar (aside)
@@ -121,6 +138,7 @@ export function Projects() {
     addProject,
     displayProjectsAside, // Only affects the sidebar
     displayProjectsModal, // Only affects the modal
+    loadProjectsFromLocalStorage, // Only loads projects when the page is loaded
     selectedProject,
   };
 }

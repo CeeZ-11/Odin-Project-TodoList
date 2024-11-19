@@ -29,6 +29,24 @@ export class Task {
 
     // Store the new task in the static tasksObject
     Task.tasksObject[this.id] = this;
+
+    // Persist the task in localStorage
+    Task.saveToLocalStorage();
+  }
+
+  static saveToLocalStorage() {
+    // Convert the tasksObject to a JSON string and store it in localStorage
+    localStorage.setItem("tasks", JSON.stringify(Task.tasksObject));
+  }
+
+  static loadFromLocalStorage() {
+    // Check if there are tasks in localStorage and load them
+    const savedTasks = localStorage.getItem("tasks");
+
+    if (savedTasks) {
+      Task.tasksObject = JSON.parse(savedTasks);
+      console.log("Task loaded: " + JSON.stringify(Task.tasksObject));
+    }
   }
 
   logTask() {
@@ -42,19 +60,19 @@ export class Task {
     console.log(`Completed: ${this.completed}`);
   }
 
-  displayTask() {
+  static displayTask(task) {
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");
-    taskDiv.id = `task-${this.id}`;
+    taskDiv.id = `task-${task.id}`;
 
     const btnTask = document.createElement("button");
-    btnTask.textContent = this.title;
+    btnTask.textContent = task.title;
     btnTask.classList.add("btnTask");
-    btnTask.setAttribute("data-task-id", this.id);
+    btnTask.setAttribute("data-task-id", task.id);
     taskDiv.appendChild(btnTask);
 
     document.querySelector(".table-body").appendChild(taskDiv);
-    this.logTask;
+    task.logTask;
   }
 
   static getInfoModalProject(getId, returnProject) {
@@ -213,6 +231,8 @@ export class Task {
       // Remove the task from the static tasksObject
       delete Task.tasksObject[task.id];
       taskInfoTable.innerHTML = "";
+
+      Task.saveToLocalStorage();
     });
 
     taskCompleted.addEventListener("click", () => {
@@ -220,6 +240,8 @@ export class Task {
       taskCompleted.textContent = task.completed
         ? "Completed"
         : "Mark as complete";
+
+      Task.saveToLocalStorage();
     });
 
     taskTitle.addEventListener("blur", () => {
@@ -231,18 +253,23 @@ export class Task {
       } else {
         Task.displayTasksByToday(task.duedate);
       }
+      Task.saveToLocalStorage();
     });
 
     taskDate.addEventListener("click", () => {
       taskDate.addEventListener("change", () => {
         taskDate.textContent = `Due Date: ${taskDate.value}`;
         task.duedate = taskDate.value;
+
+        Task.saveToLocalStorage();
       });
     });
 
     taskProject.addEventListener("click", () => {
       selectedProject = task.project;
       infoModal.infoModalProject(selectedProject);
+
+      Task.saveToLocalStorage();
     });
 
     taskTag.addEventListener("click", () => {
@@ -250,15 +277,21 @@ export class Task {
         let selectedTag = taskTag.value;
         console.log("selectedTag: " + selectedTag);
         infoModal.infoModalTag(selectedTag);
+
+        Task.saveToLocalStorage();
       }
     });
 
     taskDesc.addEventListener("blur", () => {
       task.description = taskDesc.value;
+
+      Task.saveToLocalStorage();
     });
 
     taskNote.addEventListener("blur", () => {
       task.note = taskNote.value;
+
+      Task.saveToLocalStorage();
     });
 
     taskInfoTable.appendChild(taskInfoDiv);
@@ -270,7 +303,7 @@ export class Task {
 
     for (const taskId in Task.tasksObject) {
       const task = Task.tasksObject[taskId];
-      task.displayTask(); // Use each task’s display method to add it to the DOM
+      Task.displayTask(task); // Use each task’s display method to add it to the DOM
     }
   }
 
@@ -281,7 +314,7 @@ export class Task {
     for (const taskId in Task.tasksObject) {
       const task = Task.tasksObject[taskId];
       if (task.project === projectName) {
-        task.displayTask(); // Display the task if it matches the project
+        Task.displayTask(task); // Display the task if it matches the project
       }
     }
   }
@@ -292,7 +325,7 @@ export class Task {
     for (const taskId in Task.tasksObject) {
       const task = Task.tasksObject[taskId];
       if (task.tag === tagName) {
-        task.displayTask(); // Display the task if it matches the tag
+        Task.displayTask(task); // Display the task if it matches the tag
       }
     }
   }
@@ -333,7 +366,7 @@ export class Task {
     for (const taskId in Task.tasksObject) {
       const task = Task.tasksObject[taskId];
       if (task.duedate === date) {
-        task.displayTask(); // Display the task if it matches the tag
+        Task.displayTask(task);
       }
     }
   }

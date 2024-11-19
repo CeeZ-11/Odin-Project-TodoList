@@ -100,7 +100,6 @@ export function Container() {
 
     // Handle btnTaskWeekly clicks
     if (event.target.classList.contains("btnTaskWeekly")) {
-      console.log("Week Event Listener Triggered"); // Debugging
       const taskId = event.target.getAttribute("data-task-id");
       const task = Task.tasksObject[taskId];
 
