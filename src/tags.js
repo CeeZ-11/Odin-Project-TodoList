@@ -4,8 +4,24 @@ export let tags = [];
 export function Tags() {
   function addTag(name) {
     tags.push(name);
-    console.log("tags");
     displayTagsAside();
+    saveToLocalStorage();
+  }
+
+  function saveToLocalStorage() {
+    // Convert the tags to a JSON string and store it in localStorage
+    localStorage.setItem("tags", JSON.stringify(tags));
+  }
+
+  function loadTagsFromLocalStorage() {
+    // Check if there are tags in localStorage and load them
+    const savedTags = localStorage.getItem("tags");
+
+    if (savedTags) {
+      tags = JSON.parse(savedTags);
+      console.log("Tags loaded: " + JSON.stringify(tags));
+      displayTagsAside();
+    }
   }
 
   function displayTagsAside() {
@@ -31,5 +47,6 @@ export function Tags() {
   return {
     addTag,
     tags,
+    loadTagsFromLocalStorage,
   };
 }
